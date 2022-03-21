@@ -67,6 +67,9 @@ class KotlinCompilation : AbstractKotlinCompilation<K2JVMCompilerArguments>() {
 	/** Generate metadata for Java 1.8 reflection on method parameters */
 	var javaParameters: Boolean = false
 
+	/** Use the FIR frontend */
+	var useFIR: Boolean = false
+
 	/** Use the IR backend */
 	var useIR: Boolean = false
 
@@ -323,6 +326,7 @@ class KotlinCompilation : AbstractKotlinCompilation<K2JVMCompilerArguments>() {
 		args.jvmTarget = jvmTarget
 		args.javaParameters = javaParameters
 		args.useIR = useIR
+		args.useFir = this.useFIR
 		args.useOldBackend = useOldBackend
 
 		if(javaModulePath != null)

@@ -4,6 +4,7 @@ import okio.Buffer
 import org.jetbrains.kotlin.base.kapt3.KaptOptions
 import org.jetbrains.kotlin.cli.common.CLICompiler
 import org.jetbrains.kotlin.cli.common.ExitCode
+import org.jetbrains.kotlin.cli.common.ExitCode.*
 import org.jetbrains.kotlin.cli.common.arguments.CommonCompilerArguments
 import org.jetbrains.kotlin.cli.common.arguments.parseCommandLineArguments
 import org.jetbrains.kotlin.cli.common.arguments.validateArguments
@@ -272,8 +273,9 @@ abstract class AbstractKotlinCompilation<A : CommonCompilerArguments> internal c
 }
 
 internal fun convertKotlinExitCode(code: ExitCode) = when(code) {
-    ExitCode.OK -> KotlinCompilation.ExitCode.OK
-    ExitCode.INTERNAL_ERROR -> KotlinCompilation.ExitCode.INTERNAL_ERROR
-    ExitCode.COMPILATION_ERROR -> KotlinCompilation.ExitCode.COMPILATION_ERROR
-    ExitCode.SCRIPT_EXECUTION_ERROR -> KotlinCompilation.ExitCode.SCRIPT_EXECUTION_ERROR
+    OK -> KotlinCompilation.ExitCode.OK
+    INTERNAL_ERROR -> KotlinCompilation.ExitCode.INTERNAL_ERROR
+    COMPILATION_ERROR -> KotlinCompilation.ExitCode.COMPILATION_ERROR
+    SCRIPT_EXECUTION_ERROR -> KotlinCompilation.ExitCode.SCRIPT_EXECUTION_ERROR
+    OOM_ERROR -> KotlinCompilation.ExitCode.INTERNAL_ERROR
 }
